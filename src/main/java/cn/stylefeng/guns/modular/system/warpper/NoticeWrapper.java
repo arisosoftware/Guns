@@ -32,25 +32,25 @@ import java.util.Map;
  */
 public class NoticeWrapper extends BaseControllerWrapper {
 
-    public NoticeWrapper(Map<String, Object> single) {
-        super(single);
-    }
+	public NoticeWrapper(Map<String, Object> single) {
+		super(single);
+	}
 
-    public NoticeWrapper(List<Map<String, Object>> multi) {
-        super(multi);
-    }
+	public NoticeWrapper(List<Map<String, Object>> multi) {
+		super(multi);
+	}
 
-    public NoticeWrapper(Page<Map<String, Object>> page) {
-        super(page);
-    }
+	public NoticeWrapper(Page<Map<String, Object>> page) {
+		super(page);
+	}
 
-    public NoticeWrapper(PageResult<Map<String, Object>> pageResult) {
-        super(pageResult);
-    }
+	public NoticeWrapper(PageResult<Map<String, Object>> pageResult) {
+		super(pageResult);
+	}
 
-    @Override
-    protected void wrapTheMap(Map<String, Object> map) {
-        Long creater = DecimalUtil.getLong(map.get("createUser"));
-        map.put("createrName", ConstantFactory.me().getUserNameById(creater));
-    }
+	@Override
+	protected void wrapTheMap(Map<String, Object> map) {
+		Long creater = DecimalUtil.getLong(map.get("createUser"));
+		map.put("createrName", ConstantFactory.me().getUserNameById(creater));
+	}
 }

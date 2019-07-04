@@ -22,19 +22,19 @@ import java.util.Date;
 @Service
 public class OtherDbService extends ServiceImpl<UserMapper, User> {
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    @DataSource(name = "otherdb")
-    public void otherdb() {
-        User user = new User();
-        user.setAccount(RandomUtil.randomString(5));
-        user.setPassword(RandomUtil.randomString(5));
-        user.setCreateTime(new Date());
-        user.setUpdateTime(new Date());
-        user.setCreateUser(1L);
-        user.setUpdateUser(1L);
-        userService.save(user);
-    }
+	@DataSource(name = "otherdb")
+	public void otherdb() {
+		User user = new User();
+		user.setAccount(RandomUtil.randomString(5));
+		user.setPassword(RandomUtil.randomString(5));
+		user.setCreateTime(new Date());
+		user.setUpdateTime(new Date());
+		user.setCreateUser(1L);
+		user.setUpdateUser(1L);
+		userService.save(user);
+	}
 
 }

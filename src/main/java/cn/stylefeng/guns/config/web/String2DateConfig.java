@@ -20,26 +20,28 @@ import java.util.Date;
 @Configuration
 public class String2DateConfig {
 
-    @Autowired
-    private RequestMappingHandlerAdapter handlerAdapter;
+	@Autowired
+	private RequestMappingHandlerAdapter handlerAdapter;
 
-    /**
-     * 默认时间转化器
-     */
-    @PostConstruct
-    public void addConversionConfig() {
-        ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter.getWebBindingInitializer();
-        if ((initializer != null ? initializer.getConversionService() : null) != null) {
-            GenericConversionService genericConversionService = (GenericConversionService) initializer.getConversionService();
-            genericConversionService.addConverter(new StringToDateConverter());
-        }
-    }
+	/**
+	 * 默认时间转化器
+	 */
+	@PostConstruct
+	public void addConversionConfig() {
+		ConfigurableWebBindingInitializer initializer = (ConfigurableWebBindingInitializer) handlerAdapter
+				.getWebBindingInitializer();
+		if ((initializer != null ? initializer.getConversionService() : null) != null) {
+			GenericConversionService genericConversionService = (GenericConversionService) initializer
+					.getConversionService();
+			genericConversionService.addConverter(new StringToDateConverter());
+		}
+	}
 
-    public class StringToDateConverter implements Converter<String, Date> {
-        @Override
-        public Date convert(String dateString) {
-            return DateUtil.parse(dateString);
-        }
-    }
+	public class StringToDateConverter implements Converter<String, Date> {
+		@Override
+		public Date convert(String dateString) {
+			return DateUtil.parse(dateString);
+		}
+	}
 
 }

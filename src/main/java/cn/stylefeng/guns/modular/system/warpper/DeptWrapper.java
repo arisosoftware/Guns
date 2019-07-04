@@ -33,30 +33,30 @@ import java.util.Map;
  */
 public class DeptWrapper extends BaseControllerWrapper {
 
-    public DeptWrapper(Map<String, Object> single) {
-        super(single);
-    }
+	public DeptWrapper(Map<String, Object> single) {
+		super(single);
+	}
 
-    public DeptWrapper(List<Map<String, Object>> multi) {
-        super(multi);
-    }
+	public DeptWrapper(List<Map<String, Object>> multi) {
+		super(multi);
+	}
 
-    public DeptWrapper(Page<Map<String, Object>> page) {
-        super(page);
-    }
+	public DeptWrapper(Page<Map<String, Object>> page) {
+		super(page);
+	}
 
-    public DeptWrapper(PageResult<Map<String, Object>> pageResult) {
-        super(pageResult);
-    }
+	public DeptWrapper(PageResult<Map<String, Object>> pageResult) {
+		super(pageResult);
+	}
 
-    @Override
-    protected void wrapTheMap(Map<String, Object> map) {
-        Long pid = DecimalUtil.getLong(map.get("pid"));
+	@Override
+	protected void wrapTheMap(Map<String, Object> map) {
+		Long pid = DecimalUtil.getLong(map.get("pid"));
 
-        if (ToolUtil.isEmpty(pid) || pid.equals(0L)) {
-            map.put("pName", "--");
-        } else {
-            map.put("pName", ConstantFactory.me().getDeptName(pid));
-        }
-    }
+		if (ToolUtil.isEmpty(pid) || pid.equals(0L)) {
+			map.put("pName", "--");
+		} else {
+			map.put("pName", ConstantFactory.me().getDeptName(pid));
+		}
+	}
 }

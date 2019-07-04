@@ -26,8 +26,8 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
  */
 public class GunsServletInitializer extends SpringBootServletInitializer {
 
-    @Override
-    protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-        return builder.sources(GunsApplication.class);
-    }
+	@Override
+	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
+		return builder.sources(GunsApplication.class);
+	}
 }

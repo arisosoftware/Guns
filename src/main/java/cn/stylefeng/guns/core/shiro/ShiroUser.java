@@ -29,51 +29,127 @@ import java.util.List;
 @Data
 public class ShiroUser implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 用户主键ID
-     */
-    private Long id;
+	/**
+	 * 用户主键ID
+	 */
+	private Long id;
 
-    /**
-     * 账号
-     */
-    private String account;
+	public Long getId() {
+		return id;
+	}
 
-    /**
-     * 姓名
-     */
-    private String name;
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    /**
-     * 邮箱
-     */
-    private String email;
+	public String getAccount() {
+		return account;
+	}
 
-    /**
-     * 头像
-     */
-    private String avatar;
+	public void setAccount(String account) {
+		this.account = account;
+	}
 
-    /**
-     * 部门id
-     */
-    private Long deptId;
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * 角色集
-     */
-    private List<Long> roleList;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /**
-     * 部门名称
-     */
-    private String deptName;
+	public String getEmail() {
+		return email;
+	}
 
-    /**
-     * 角色名称集
-     */
-    private List<String> roleNames;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getAvatar() {
+		return avatar;
+	}
+
+	public void setAvatar(String avatar) {
+		this.avatar = avatar;
+	}
+
+	public Long getDeptId() {
+		return deptId;
+	}
+
+	public void setDeptId(Long deptId) {
+		this.deptId = deptId;
+	}
+
+	public List<Long> getRoleList() {
+		return roleList;
+	}
+
+	public void setRoleList(List<Long> roleList) {
+		this.roleList = roleList;
+	}
+
+	public String getDeptName() {
+		return deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public List<String> getRoleNames() {
+		return roleNames;
+	}
+
+	public void setRoleNames(List<String> roleNames) {
+		this.roleNames = roleNames;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	/**
+	 * 账号
+	 */
+	private String account;
+
+	/**
+	 * 姓名
+	 */
+	private String name;
+
+	/**
+	 * 邮箱
+	 */
+	private String email;
+
+	/**
+	 * 头像
+	 */
+	private String avatar;
+
+	/**
+	 * 部门id
+	 */
+	private Long deptId;
+
+	/**
+	 * 角色集
+	 */
+	private List<Long> roleList;
+
+	/**
+	 * 部门名称
+	 */
+	private String deptName;
+
+	/**
+	 * 角色名称集
+	 */
+	private List<String> roleNames;
 
 }

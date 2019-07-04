@@ -52,117 +52,117 @@ import java.util.Map;
 @RequestMapping("/notice")
 public class NoticeController extends BaseController {
 
-    private String PREFIX = "/modular/system/notice/";
+	private String PREFIX = "/modular/system/notice/";
 
-    @Autowired
-    private NoticeService noticeService;
+	@Autowired
+	private NoticeService noticeService;
 
-    /**
-     * 跳转到通知列表首页
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:06 PM
-     */
-    @RequestMapping("")
-    public String index() {
-        return PREFIX + "notice.html";
-    }
+	/**
+	 * 跳转到通知列表首页
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 6:06 PM
+	 */
+	@RequestMapping("")
+	public String index() {
+		return PREFIX + "notice.html";
+	}
 
-    /**
-     * 跳转到添加通知
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:06 PM
-     */
-    @RequestMapping("/notice_add")
-    public String noticeAdd() {
-        return PREFIX + "notice_add.html";
-    }
+	/**
+	 * 跳转到添加通知
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 6:06 PM
+	 */
+	@RequestMapping("/notice_add")
+	public String noticeAdd() {
+		return PREFIX + "notice_add.html";
+	}
 
-    /**
-     * 跳转到修改通知
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:06 PM
-     */
-    @RequestMapping("/notice_update/{noticeId}")
-    public String noticeUpdate(@PathVariable Long noticeId, Model model) {
-        Notice notice = this.noticeService.getById(noticeId);
-        model.addAllAttributes(BeanUtil.beanToMap(notice));
-        LogObjectHolder.me().set(notice);
-        return PREFIX + "notice_edit.html";
-    }
+	/**
+	 * 跳转到修改通知
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 6:06 PM
+	 */
+	@RequestMapping("/notice_update/{noticeId}")
+	public String noticeUpdate(@PathVariable Long noticeId, Model model) {
+		Notice notice = this.noticeService.getById(noticeId);
+		model.addAllAttributes(BeanUtil.beanToMap(notice));
+		LogObjectHolder.me().set(notice);
+		return PREFIX + "notice_edit.html";
+	}
 
-    /**
-     * 获取通知列表
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:06 PM
-     */
-    @RequestMapping(value = "/list")
-    @ResponseBody
-    public Object list(String condition) {
-        Page<Map<String, Object>> list = this.noticeService.list(condition);
-        Page<Map<String, Object>> wrap = new NoticeWrapper(list).wrap();
-        return LayuiPageFactory.createPageInfo(wrap);
-    }
+	/**
+	 * 获取通知列表
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 6:06 PM
+	 */
+	@RequestMapping(value = "/list")
+	@ResponseBody
+	public Object list(String condition) {
+		Page<Map<String, Object>> list = this.noticeService.list(condition);
+		Page<Map<String, Object>> wrap = new NoticeWrapper(list).wrap();
+		return LayuiPageFactory.createPageInfo(wrap);
+	}
 
-    /**
-     * 新增通知
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:06 PM
-     */
-    @RequestMapping(value = "/add")
-    @ResponseBody
-    @BussinessLog(value = "新增通知", key = "title", dict = NoticeMap.class)
-    public Object add(Notice notice) {
-        if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
-        notice.setCreateUser(ShiroKit.getUserNotNull().getId());
-        notice.setCreateTime(new Date());
-        this.noticeService.save(notice);
-        return SUCCESS_TIP;
-    }
+	/**
+	 * 新增通知
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 6:06 PM
+	 */
+	@RequestMapping(value = "/add")
+	@ResponseBody
+	@BussinessLog(value = "新增通知", key = "title", dict = NoticeMap.class)
+	public Object add(Notice notice) {
+		if (ToolUtil.isOneEmpty(notice, notice.getTitle(), notice.getContent())) {
+			throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
+		}
+		notice.setCreateUser(ShiroKit.getUserNotNull().getId());
+		notice.setCreateTime(new Date());
+		this.noticeService.save(notice);
+		return SUCCESS_TIP;
+	}
 
-    /**
-     * 删除通知
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:06 PM
-     */
-    @RequestMapping(value = "/delete")
-    @ResponseBody
-    @BussinessLog(value = "删除通知", key = "noticeId", dict = DeleteDict.class)
-    public Object delete(@RequestParam Long noticeId) {
+	/**
+	 * 删除通知
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 6:06 PM
+	 */
+	@RequestMapping(value = "/delete")
+	@ResponseBody
+	@BussinessLog(value = "删除通知", key = "noticeId", dict = DeleteDict.class)
+	public Object delete(@RequestParam Long noticeId) {
 
-        //缓存通知名称
-        LogObjectHolder.me().set(ConstantFactory.me().getNoticeTitle(noticeId));
+		// 缓存通知名称
+		LogObjectHolder.me().set(ConstantFactory.me().getNoticeTitle(noticeId));
 
-        this.noticeService.removeById(noticeId);
+		this.noticeService.removeById(noticeId);
 
-        return SUCCESS_TIP;
-    }
+		return SUCCESS_TIP;
+	}
 
-    /**
-     * 修改通知
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:06 PM
-     */
-    @RequestMapping(value = "/update")
-    @ResponseBody
-    @BussinessLog(value = "修改通知", key = "title", dict = NoticeMap.class)
-    public Object update(Notice notice) {
-        if (ToolUtil.isOneEmpty(notice, notice.getNoticeId(), notice.getTitle(), notice.getContent())) {
-            throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
-        }
-        Notice old = this.noticeService.getById(notice.getNoticeId());
-        old.setTitle(notice.getTitle());
-        old.setContent(notice.getContent());
-        this.noticeService.updateById(old);
-        return SUCCESS_TIP;
-    }
+	/**
+	 * 修改通知
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 6:06 PM
+	 */
+	@RequestMapping(value = "/update")
+	@ResponseBody
+	@BussinessLog(value = "修改通知", key = "title", dict = NoticeMap.class)
+	public Object update(Notice notice) {
+		if (ToolUtil.isOneEmpty(notice, notice.getNoticeId(), notice.getTitle(), notice.getContent())) {
+			throw new ServiceException(BizExceptionEnum.REQUEST_NULL);
+		}
+		Notice old = this.noticeService.getById(notice.getNoticeId());
+		old.setTitle(notice.getTitle());
+		old.setContent(notice.getContent());
+		this.noticeService.updateById(old);
+		return SUCCESS_TIP;
+	}
 
 }

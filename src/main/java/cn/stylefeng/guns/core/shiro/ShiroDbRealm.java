@@ -36,58 +36,58 @@ import java.util.Set;
 
 public class ShiroDbRealm extends AuthorizingRealm {
 
-    /**
-     * 登录认证
-     */
-    @Override
-    protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
-            throws AuthenticationException {
-        UserAuthService shiroFactory = UserAuthServiceServiceImpl.me();
-        UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-        User user = shiroFactory.user(token.getUsername());
-        ShiroUser shiroUser = shiroFactory.shiroUser(user);
-        return shiroFactory.info(shiroUser, user, super.getName());
-    }
+	/**
+	 * 登录认证
+	 */
+	@Override
+	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken)
+			throws AuthenticationException {
+		UserAuthService shiroFactory = UserAuthServiceServiceImpl.me();
+		UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+		User user = shiroFactory.user(token.getUsername());
+		ShiroUser shiroUser = shiroFactory.shiroUser(user);
+		return shiroFactory.info(shiroUser, user, super.getName());
+	}
 
-    /**
-     * 权限认证
-     */
-    @Override
-    protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-        UserAuthService shiroFactory = UserAuthServiceServiceImpl.me();
-        ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
-        List<Long> roleList = shiroUser.getRoleList();
+	/**
+	 * 权限认证
+	 */
+	@Override
+	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
+		UserAuthService shiroFactory = UserAuthServiceServiceImpl.me();
+		ShiroUser shiroUser = (ShiroUser) principals.getPrimaryPrincipal();
+		List<Long> roleList = shiroUser.getRoleList();
 
-        Set<String> permissionSet = new HashSet<>();
-        Set<String> roleNameSet = new HashSet<>();
+		Set<String> permissionSet = new HashSet<>();
+		Set<String> roleNameSet = new HashSet<>();
 
-        for (Long roleId : roleList) {
-            List<String> permissions = shiroFactory.findPermissionsByRoleId(roleId);
-            if (permissions != null) {
-                for (String permission : permissions) {
-                    if (ToolUtil.isNotEmpty(permission)) {
-                        permissionSet.add(permission);
-                    }
-                }
-            }
-            String roleName = shiroFactory.findRoleNameByRoleId(roleId);
-            roleNameSet.add(roleName);
-        }
+		for (Long roleId : roleList) {
+			List<String> permissions = shiroFactory.findPermissionsByRoleId(roleId);
+			if (permissions != null) {
+				for (String permission : permissions) {
+					if (ToolUtil.isNotEmpty(permission)) {
+						permissionSet.add(permission);
+					}
+				}
+			}
+			String roleName = shiroFactory.findRoleNameByRoleId(roleId);
+			roleNameSet.add(roleName);
+		}
 
-        SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-        info.addStringPermissions(permissionSet);
-        info.addRoles(roleNameSet);
-        return info;
-    }
+		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+		info.addStringPermissions(permissionSet);
+		info.addRoles(roleNameSet);
+		return info;
+	}
 
-    /**
-     * 设置认证加密方式
-     */
-    @Override
-    public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
-        HashedCredentialsMatcher md5CredentialsMatcher = new HashedCredentialsMatcher();
-        md5CredentialsMatcher.setHashAlgorithmName(ShiroKit.hashAlgorithmName);
-        md5CredentialsMatcher.setHashIterations(ShiroKit.hashIterations);
-        super.setCredentialsMatcher(md5CredentialsMatcher);
-    }
+	/**
+	 * 设置认证加密方式
+	 */
+	@Override
+	public void setCredentialsMatcher(CredentialsMatcher credentialsMatcher) {
+		HashedCredentialsMatcher md5CredentialsMatcher = new HashedCredentialsMatcher();
+		md5CredentialsMatcher.setHashAlgorithmName(ShiroKit.hashAlgorithmName);
+		md5CredentialsMatcher.setHashIterations(ShiroKit.hashIterations);
+		super.setCredentialsMatcher(md5CredentialsMatcher);
+	}
 }

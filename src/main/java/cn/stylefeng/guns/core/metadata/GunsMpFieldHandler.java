@@ -28,16 +28,16 @@ import org.springframework.stereotype.Component;
 @Component
 public class GunsMpFieldHandler extends CustomMetaObjectHandler {
 
-    @Override
-    protected Object getUserUniqueId() {
-        try {
+	@Override
+	protected Object getUserUniqueId() {
+		try {
 
-            return ShiroKit.getUser().getId();
+			return ShiroKit.getUser().getId();
 
-        } catch (Exception e) {
+		} catch (Exception e) {
 
-            //如果获取不到当前用户就存空id
-            return "";
-        }
-    }
+			// 如果获取不到当前用户就存空id
+			return "";
+		}
+	}
 }

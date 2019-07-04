@@ -16,62 +16,61 @@ import java.util.Date;
 @Data
 public class DictTypeResult implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
+	/**
+	 * 字典类型id
+	 */
+	private Long dictTypeId;
 
-    /**
-     * 字典类型id
-     */
-    private Long dictTypeId;
+	/**
+	 * 是否是系统字典，Y-是，N-否
+	 */
+	private String systemFlag;
 
-    /**
-     * 是否是系统字典，Y-是，N-否
-     */
-    private String systemFlag;
+	/**
+	 * 字典类型编码
+	 */
+	private String code;
 
-    /**
-     * 字典类型编码
-     */
-    private String code;
+	/**
+	 * 字典类型名称
+	 */
+	private String name;
 
-    /**
-     * 字典类型名称
-     */
-    private String name;
+	/**
+	 * 字典描述
+	 */
+	private String description;
 
-    /**
-     * 字典描述
-     */
-    private String description;
+	/**
+	 * 状态(字典)
+	 */
+	private String status;
 
-    /**
-     * 状态(字典)
-     */
-    private String status;
+	/**
+	 * 添加时间
+	 */
+	private Date createTime;
 
-    /**
-     * 添加时间
-     */
-    private Date createTime;
+	/**
+	 * 创建人
+	 */
+	private Long createUser;
 
-    /**
-     * 创建人
-     */
-    private Long createUser;
+	/**
+	 * 修改时间
+	 */
+	private Date updateTime;
 
-    /**
-     * 修改时间
-     */
-    private Date updateTime;
+	/**
+	 * 修改人
+	 */
+	private Long updateUser;
 
-    /**
-     * 修改人
-     */
-    private Long updateUser;
-
-    /**
-     * 排序
-     */
-    private Integer sort;
+	/**
+	 * 排序
+	 */
+	private Integer sort;
 
 }

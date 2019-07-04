@@ -15,21 +15,21 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class TestMultiDbService {
 
-    @Autowired
-    private GunsDbService gunsDbService;
+	@Autowired
+	private GunsDbService gunsDbService;
 
-    @Autowired
-    private OtherDbService otherDbService;
+	@Autowired
+	private OtherDbService otherDbService;
 
-    @Transactional(rollbackFor = Exception.class)
-    public void beginTest() {
+	@Transactional(rollbackFor = Exception.class)
+	public void beginTest() {
 
-        gunsDbService.gunsdb();
+		gunsDbService.gunsdb();
 
-        otherDbService.otherdb();
+		otherDbService.otherdb();
 
 //        int i = 1 / 0;
 
-    }
+	}
 
 }

@@ -23,10 +23,10 @@ import cn.stylefeng.roses.core.util.SpringContextHolder;
  */
 public class KaptchaUtil {
 
-    /**
-     * 获取验证码开关
-     */
-    public static Boolean getKaptchaOnOff() {
-        return SpringContextHolder.getBean(GunsProperties.class).getKaptchaOpen();
-    }
+	/**
+	 * 获取验证码开关
+	 */
+	public static Boolean getKaptchaOnOff() {
+		return SpringContextHolder.getBean(GunsProperties.class).getKaptchaOpen();
+	}
 }

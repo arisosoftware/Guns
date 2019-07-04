@@ -47,74 +47,73 @@ import java.util.Map;
 @RequestMapping("/log")
 public class LogController extends BaseController {
 
-    private static String PREFIX = "/modular/system/log/";
+	private static String PREFIX = "/modular/system/log/";
 
-    @Autowired
-    private OperationLogService operationLogService;
+	@Autowired
+	private OperationLogService operationLogService;
 
-    /**
-     * 跳转到日志管理的首页
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 5:34 PM
-     */
-    @RequestMapping("")
-    public String index() {
-        return PREFIX + "log.html";
-    }
+	/**
+	 * 跳转到日志管理的首页
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 5:34 PM
+	 */
+	@RequestMapping("")
+	public String index() {
+		return PREFIX + "log.html";
+	}
 
-    /**
-     * 查询操作日志列表
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 5:34 PM
-     */
-    @RequestMapping("/list")
-    @Permission(Const.ADMIN_NAME)
-    @ResponseBody
-    public Object list(@RequestParam(required = false) String beginTime,
-                       @RequestParam(required = false) String endTime,
-                       @RequestParam(required = false) String logName,
-                       @RequestParam(required = false) Integer logType) {
+	/**
+	 * 查询操作日志列表
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 5:34 PM
+	 */
+	@RequestMapping("/list")
+	@Permission(Const.ADMIN_NAME)
+	@ResponseBody
+	public Object list(@RequestParam(required = false) String beginTime, @RequestParam(required = false) String endTime,
+			@RequestParam(required = false) String logName, @RequestParam(required = false) Integer logType) {
 
-        //获取分页参数
-        Page page = LayuiPageFactory.defaultPage();
+		// 获取分页参数
+		Page page = LayuiPageFactory.defaultPage();
 
-        //根据条件查询操作日志
-        List<Map<String, Object>> result = operationLogService.getOperationLogs(page, beginTime, endTime, logName, BizLogType.valueOf(logType));
+		// 根据条件查询操作日志
+		List<Map<String, Object>> result = operationLogService.getOperationLogs(page, beginTime, endTime, logName,
+				BizLogType.valueOf(logType));
 
-        page.setRecords(new LogWrapper(result).wrap());
+		page.setRecords(new LogWrapper(result).wrap());
 
-        return LayuiPageFactory.createPageInfo(page);
-    }
+		return LayuiPageFactory.createPageInfo(page);
+	}
 
-    /**
-     * 查询操作日志详情
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 5:34 PM
-     */
-    @RequestMapping("/detail/{id}")
-    @Permission(Const.ADMIN_NAME)
-    @ResponseBody
-    public Object detail(@PathVariable Long id) {
-        OperationLog operationLog = operationLogService.getById(id);
-        Map<String, Object> stringObjectMap = BeanUtil.beanToMap(operationLog);
-        return super.warpObject(new LogWrapper(stringObjectMap));
-    }
+	/**
+	 * 查询操作日志详情
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 5:34 PM
+	 */
+	@RequestMapping("/detail/{id}")
+	@Permission(Const.ADMIN_NAME)
+	@ResponseBody
+	public Object detail(@PathVariable Long id) {
+		OperationLog operationLog = operationLogService.getById(id);
+		Map<String, Object> stringObjectMap = BeanUtil.beanToMap(operationLog);
+		return super.warpObject(new LogWrapper(stringObjectMap));
+	}
 
-    /**
-     * 清空日志
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 5:34 PM
-     */
-    @BussinessLog(value = "清空业务日志")
-    @RequestMapping("/delLog")
-    @Permission(Const.ADMIN_NAME)
-    @ResponseBody
-    public Object delLog() {
-        SqlRunner.db().delete("delete from sys_operation_log");
-        return SUCCESS_TIP;
-    }
+	/**
+	 * 清空日志
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 5:34 PM
+	 */
+	@BussinessLog(value = "清空业务日志")
+	@RequestMapping("/delLog")
+	@Permission(Const.ADMIN_NAME)
+	@ResponseBody
+	public Object delLog() {
+		SqlRunner.db().delete("delete from sys_operation_log");
+		return SUCCESS_TIP;
+	}
 }

@@ -25,15 +25,51 @@ import java.util.List;
  * @author fengshuonan
  * @Date 2019年1月25日22:07:36
  */
-@Data
+/**
+ * @author developer
+ *
+ */
+
 public class LayuiPageInfo {
 
-    private Integer code = 0;
+	private Integer code = 0;
 
-    private String msg = "请求成功";
+	public Integer getCode() {
+		return code;
+	}
 
-    private List data;
+	public void setCode(Integer code) {
+		this.code = code;
+	}
 
-    private long count;
+	public String getMsg() {
+		return msg;
+	}
+
+	public void setMsg(String msg) {
+		this.msg = msg;
+	}
+
+	public List getData() {
+		return data;
+	}
+
+	public void setData(List data) {
+		this.data = data;
+	}
+
+	public long getCount() {
+		return count;
+	}
+
+	public void setCount(long count) {
+		this.count = count;
+	}
+
+	private String msg = "请求成功";
+
+	private List data;
+
+	private long count;
 
 }

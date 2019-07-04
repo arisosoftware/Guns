@@ -17,9 +17,9 @@ import java.util.Map;
  */
 public interface NoticeMapper extends BaseMapper<Notice> {
 
-    /**
-     * 获取通知列表
-     */
-    Page<Map<String, Object>> list(@Param("page") Page page, @Param("condition") String condition);
+	/**
+	 * 获取通知列表
+	 */
+	Page<Map<String, Object>> list(@Param("page") Page page, @Param("condition") String condition);
 
 }

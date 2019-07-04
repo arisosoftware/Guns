@@ -32,26 +32,26 @@ import java.util.Map;
  */
 public class RoleWrapper extends BaseControllerWrapper {
 
-    public RoleWrapper(Map<String, Object> single) {
-        super(single);
-    }
+	public RoleWrapper(Map<String, Object> single) {
+		super(single);
+	}
 
-    public RoleWrapper(List<Map<String, Object>> multi) {
-        super(multi);
-    }
+	public RoleWrapper(List<Map<String, Object>> multi) {
+		super(multi);
+	}
 
-    public RoleWrapper(Page<Map<String, Object>> page) {
-        super(page);
-    }
+	public RoleWrapper(Page<Map<String, Object>> page) {
+		super(page);
+	}
 
-    public RoleWrapper(PageResult<Map<String, Object>> pageResult) {
-        super(pageResult);
-    }
+	public RoleWrapper(PageResult<Map<String, Object>> pageResult) {
+		super(pageResult);
+	}
 
-    @Override
-    protected void wrapTheMap(Map<String, Object> map) {
-        map.put("pName", ConstantFactory.me().getSingleRoleName(DecimalUtil.getLong(map.get("pid"))));
-        map.put("deptName", ConstantFactory.me().getDeptName(DecimalUtil.getLong(map.get("deptId"))));
-    }
+	@Override
+	protected void wrapTheMap(Map<String, Object> map) {
+		map.put("pName", ConstantFactory.me().getSingleRoleName(DecimalUtil.getLong(map.get("pid"))));
+		map.put("deptName", ConstantFactory.me().getDeptName(DecimalUtil.getLong(map.get("deptId"))));
+	}
 
 }

@@ -16,57 +16,132 @@ import java.io.Serializable;
 @Data
 public class DictParam implements Serializable, BaseValidatingParam {
 
-    private static final long serialVersionUID = 1L;
+	public Long getDictId() {
+		return dictId;
+	}
 
+	public void setDictId(Long dictId) {
+		this.dictId = dictId;
+	}
 
-    /**
-     * 字典id
-     */
-    private Long dictId;
+	public Long getDictTypeId() {
+		return dictTypeId;
+	}
 
-    /**
-     * 所属字典类型的id
-     */
-    private Long dictTypeId;
+	public void setDictTypeId(Long dictTypeId) {
+		this.dictTypeId = dictTypeId;
+	}
 
-    /**
-     * 字典编码
-     */
-    private String code;
+	public String getCode() {
+		return code;
+	}
 
-    /**
-     * 字典名称
-     */
-    private String name;
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    /**
-     * 上级代码id
-     */
-    private Long parentId;
+	public String getName() {
+		return name;
+	}
 
-    /**
-     * 状态（字典）
-     */
-    private String status;
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    /**
-     * 字典的描述
-     */
-    private String description;
+	public Long getParentId() {
+		return parentId;
+	}
 
-    /**
-     * 查询条件
-     */
-    private String condition;
+	public void setParentId(Long parentId) {
+		this.parentId = parentId;
+	}
 
-    /**
-     * 排序
-     */
-    private Integer sort;
+	public String getStatus() {
+		return status;
+	}
 
-    @Override
-    public String checkParam() {
-        return null;
-    }
+	public void setStatus(String status) {
+		this.status = status;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public String getCondition() {
+		return condition;
+	}
+
+	public void setCondition(String condition) {
+		this.condition = condition;
+	}
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	private static final long serialVersionUID = 1L;
+
+	/**
+	 * 字典id
+	 */
+	private Long dictId;
+
+	/**
+	 * 所属字典类型的id
+	 */
+	private Long dictTypeId;
+
+	/**
+	 * 字典编码
+	 */
+	private String code;
+
+	/**
+	 * 字典名称
+	 */
+	private String name;
+
+	/**
+	 * 上级代码id
+	 */
+	private Long parentId;
+
+	/**
+	 * 状态（字典）
+	 */
+	private String status;
+
+	/**
+	 * 字典的描述
+	 */
+	private String description;
+
+	/**
+	 * 查询条件
+	 */
+	private String condition;
+
+	/**
+	 * 排序
+	 */
+	private Integer sort;
+
+	@Override
+	public String checkParam() {
+		return null;
+	}
 
 }

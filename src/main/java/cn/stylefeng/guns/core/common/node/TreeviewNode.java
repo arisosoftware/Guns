@@ -29,38 +29,70 @@ import java.util.List;
 @Data
 public class TreeviewNode implements Tree {
 
-    /**
-     * 附加信息，一般用于存业务id
-     */
-    private String tags;
+	public String getTags() {
+		return tags;
+	}
 
-    /**
-     * 父级id
-     */
-    private String parentId;
+	public void setTags(String tags) {
+		this.tags = tags;
+	}
 
-    /**
-     * 节点名称
-     */
-    private String text;
+	public String getParentId() {
+		return parentId;
+	}
 
-    /**
-     * 子节点
-     */
-    private List<TreeviewNode> nodes;
+	public void setParentId(String parentId) {
+		this.parentId = parentId;
+	}
 
-    @Override
-    public String getNodeId() {
-        return tags;
-    }
+	public String getText() {
+		return text;
+	}
 
-    @Override
-    public String getNodeParentId() {
-        return parentId;
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
 
-    @Override
-    public void setChildrenNodes(List childrenNodes) {
-        this.nodes = childrenNodes;
-    }
+	public List<TreeviewNode> getNodes() {
+		return nodes;
+	}
+
+	public void setNodes(List<TreeviewNode> nodes) {
+		this.nodes = nodes;
+	}
+
+	/**
+	 * 附加信息，一般用于存业务id
+	 */
+	private String tags;
+
+	/**
+	 * 父级id
+	 */
+	private String parentId;
+
+	/**
+	 * 节点名称
+	 */
+	private String text;
+
+	/**
+	 * 子节点
+	 */
+	private List<TreeviewNode> nodes;
+
+	@Override
+	public String getNodeId() {
+		return tags;
+	}
+
+	@Override
+	public String getNodeParentId() {
+		return parentId;
+	}
+
+	@Override
+	public void setChildrenNodes(List childrenNodes) {
+		this.nodes = childrenNodes;
+	}
 }

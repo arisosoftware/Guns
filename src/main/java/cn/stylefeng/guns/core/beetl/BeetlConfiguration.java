@@ -33,18 +33,18 @@ import static cn.stylefeng.guns.core.common.constant.Const.DEFAULT_WELCOME_TIP;
  */
 public class BeetlConfiguration extends BeetlGroupUtilConfiguration {
 
-    @Override
-    public void initOther() {
+	@Override
+	public void initOther() {
 
-        //全局共享变量
-        Map<String, Object> shared = new HashMap<>();
-        shared.put("systemName", DEFAULT_SYSTEM_NAME);
-        shared.put("welcomeTip", DEFAULT_WELCOME_TIP);
-        groupTemplate.setSharedVars(shared);
+		// 全局共享变量
+		Map<String, Object> shared = new HashMap<>();
+		shared.put("systemName", DEFAULT_SYSTEM_NAME);
+		shared.put("welcomeTip", DEFAULT_WELCOME_TIP);
+		groupTemplate.setSharedVars(shared);
 
-        //全局共享方法
-        groupTemplate.registerFunctionPackage("shiro", new ShiroExt());
-        groupTemplate.registerFunctionPackage("tool", new ToolUtil());
-        groupTemplate.registerFunctionPackage("kaptcha", new KaptchaUtil());
-    }
+		// 全局共享方法
+		groupTemplate.registerFunctionPackage("shiro", new ShiroExt());
+		groupTemplate.registerFunctionPackage("tool", new ToolUtil());
+		groupTemplate.registerFunctionPackage("kaptcha", new KaptchaUtil());
+	}
 }

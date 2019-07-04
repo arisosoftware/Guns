@@ -5,8 +5,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
- * 文件信息表
- Mapper 接口
+ * 文件信息表 Mapper 接口
  * </p>
  *
  * @author stylefeng

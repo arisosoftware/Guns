@@ -20,14 +20,14 @@ import java.util.Map;
 @Service
 public class NoticeService extends ServiceImpl<NoticeMapper, Notice> {
 
-    /**
-     * 获取通知列表
-     *
-     * @author fengshuonan
-     * @Date 2018/12/23 6:05 PM
-     */
-    public Page<Map<String, Object>> list(String condition) {
-        Page page = LayuiPageFactory.defaultPage();
-        return this.baseMapper.list(page, condition);
-    }
+	/**
+	 * 获取通知列表
+	 *
+	 * @author fengshuonan
+	 * @Date 2018/12/23 6:05 PM
+	 */
+	public Page<Map<String, Object>> list(String condition) {
+		Page page = LayuiPageFactory.defaultPage();
+		return this.baseMapper.list(page, condition);
+	}
 }

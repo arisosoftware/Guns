@@ -17,57 +17,52 @@ import java.io.Serializable;
 @TableName("sys_relation")
 public class Relation implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
-    @TableId(value = "relation_id", type = IdType.ID_WORKER)
-    private Long relationId;
+	/**
+	 * 主键
+	 */
+	@TableId(value = "relation_id", type = IdType.ID_WORKER)
+	private Long relationId;
 
-    /**
-     * 菜单id
-     */
-    @TableField("menu_id")
-    private Long menuId;
+	/**
+	 * 菜单id
+	 */
+	@TableField("menu_id")
+	private Long menuId;
 
-    /**
-     * 角色id
-     */
-    @TableField("role_id")
-    private Long roleId;
+	/**
+	 * 角色id
+	 */
+	@TableField("role_id")
+	private Long roleId;
 
+	public Long getRelationId() {
+		return relationId;
+	}
 
-    public Long getRelationId() {
-        return relationId;
-    }
+	public void setRelationId(Long relationId) {
+		this.relationId = relationId;
+	}
 
-    public void setRelationId(Long relationId) {
-        this.relationId = relationId;
-    }
+	public Long getMenuId() {
+		return menuId;
+	}
 
-    public Long getMenuId() {
-        return menuId;
-    }
+	public void setMenuId(Long menuId) {
+		this.menuId = menuId;
+	}
 
-    public void setMenuId(Long menuId) {
-        this.menuId = menuId;
-    }
+	public Long getRoleId() {
+		return roleId;
+	}
 
-    public Long getRoleId() {
-        return roleId;
-    }
+	public void setRoleId(Long roleId) {
+		this.roleId = roleId;
+	}
 
-    public void setRoleId(Long roleId) {
-        this.roleId = roleId;
-    }
-
-    @Override
-    public String toString() {
-        return "Relation{" +
-        "relationId=" + relationId +
-        ", menuId=" + menuId +
-        ", roleId=" + roleId +
-        "}";
-    }
+	@Override
+	public String toString() {
+		return "Relation{" + "relationId=" + relationId + ", menuId=" + menuId + ", roleId=" + roleId + "}";
+	}
 }

@@ -17,13 +17,13 @@ import java.util.List;
  */
 public interface DictMapper extends BaseMapper<Dict> {
 
-    /**
-     * 获取ztree的节点列表
-     */
-    List<ZTreeNode> dictTree(@Param("dictTypeId") Long dictTypeId);
+	/**
+	 * 获取ztree的节点列表
+	 */
+	List<ZTreeNode> dictTree(@Param("dictTypeId") Long dictTypeId);
 
-    /**
-     * where parentIds like ''
-     */
-    List<Dict> likeParentIds(@Param("dictId") Long dictId);
+	/**
+	 * where parentIds like ''
+	 */
+	List<Dict> likeParentIds(@Param("dictId") Long dictId);
 }

@@ -32,32 +32,32 @@ import java.util.Map;
  */
 public class MenuWrapper extends BaseControllerWrapper {
 
-    public MenuWrapper(Map<String, Object> single) {
-        super(single);
-    }
+	public MenuWrapper(Map<String, Object> single) {
+		super(single);
+	}
 
-    public MenuWrapper(List<Map<String, Object>> multi) {
-        super(multi);
-    }
+	public MenuWrapper(List<Map<String, Object>> multi) {
+		super(multi);
+	}
 
-    public MenuWrapper(Page<Map<String, Object>> page) {
-        super(page);
-    }
+	public MenuWrapper(Page<Map<String, Object>> page) {
+		super(page);
+	}
 
-    public MenuWrapper(PageResult<Map<String, Object>> pageResult) {
-        super(pageResult);
-    }
+	public MenuWrapper(PageResult<Map<String, Object>> pageResult) {
+		super(pageResult);
+	}
 
-    @Override
-    protected void wrapTheMap(Map<String, Object> map) {
-        map.put("statusName", ConstantFactory.me().getMenuStatusName((String) map.get("status")));
+	@Override
+	protected void wrapTheMap(Map<String, Object> map) {
+		map.put("statusName", ConstantFactory.me().getMenuStatusName((String) map.get("status")));
 
-        String menuFlag = (String) map.get("menuFlag");
-        for (YesOrNotEnum value : YesOrNotEnum.values()) {
-            if(value.name().equals(menuFlag)){
-                map.put("isMenuName", value.getDesc());
-            }
-        }
-    }
+		String menuFlag = (String) map.get("menuFlag");
+		for (YesOrNotEnum value : YesOrNotEnum.values()) {
+			if (value.name().equals(menuFlag)) {
+				map.put("isMenuName", value.getDesc());
+			}
+		}
+	}
 
 }

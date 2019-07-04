@@ -44,74 +44,74 @@ import java.util.List;
 @Transactional(readOnly = true)
 public class UserAuthServiceServiceImpl implements UserAuthService {
 
-    @Autowired
-    private UserMapper userMapper;
+	@Autowired
+	private UserMapper userMapper;
 
-    @Autowired
-    private MenuMapper menuMapper;
+	@Autowired
+	private MenuMapper menuMapper;
 
-    @Autowired
-    private UserService userService;
+	@Autowired
+	private UserService userService;
 
-    public static UserAuthService me() {
-        return SpringContextHolder.getBean(UserAuthService.class);
-    }
+	public static UserAuthService me() {
+		return SpringContextHolder.getBean(UserAuthService.class);
+	}
 
-    @Override
-    public User user(String account) {
+	@Override
+	public User user(String account) {
 
-        User user = userMapper.getByAccount(account);
+		User user = userMapper.getByAccount(account);
 
-        // 账号不存在
-        if (null == user) {
-            throw new CredentialsException();
-        }
-        // 账号被冻结
-        if (!user.getStatus().equals(ManagerStatus.OK.getCode())) {
-            throw new LockedAccountException();
-        }
-        return user;
-    }
+		// 账号不存在
+		if (null == user) {
+			throw new CredentialsException();
+		}
+		// 账号被冻结
+		if (!user.getStatus().equals(ManagerStatus.OK.getCode())) {
+			throw new LockedAccountException();
+		}
+		return user;
+	}
 
-    @Override
-    public ShiroUser shiroUser(User user) {
+	@Override
+	public ShiroUser shiroUser(User user) {
 
-        ShiroUser shiroUser = ShiroKit.createShiroUser(user);
+		ShiroUser shiroUser = ShiroKit.createShiroUser(user);
 
-        //用户角色数组
-        Long[] roleArray = Convert.toLongArray(user.getRoleId());
+		// 用户角色数组
+		Long[] roleArray = Convert.toLongArray(user.getRoleId());
 
-        //获取用户角色列表
-        List<Long> roleList = new ArrayList<>();
-        List<String> roleNameList = new ArrayList<>();
-        for (Long roleId : roleArray) {
-            roleList.add(roleId);
-            roleNameList.add(ConstantFactory.me().getSingleRoleName(roleId));
-        }
-        shiroUser.setRoleList(roleList);
-        shiroUser.setRoleNames(roleNameList);
+		// 获取用户角色列表
+		List<Long> roleList = new ArrayList<>();
+		List<String> roleNameList = new ArrayList<>();
+		for (Long roleId : roleArray) {
+			roleList.add(roleId);
+			roleNameList.add(ConstantFactory.me().getSingleRoleName(roleId));
+		}
+		shiroUser.setRoleList(roleList);
+		shiroUser.setRoleNames(roleNameList);
 
-        return shiroUser;
-    }
+		return shiroUser;
+	}
 
-    @Override
-    public List<String> findPermissionsByRoleId(Long roleId) {
-        return menuMapper.getResUrlsByRoleId(roleId);
-    }
+	@Override
+	public List<String> findPermissionsByRoleId(Long roleId) {
+		return menuMapper.getResUrlsByRoleId(roleId);
+	}
 
-    @Override
-    public String findRoleNameByRoleId(Long roleId) {
-        return ConstantFactory.me().getSingleRoleTip(roleId);
-    }
+	@Override
+	public String findRoleNameByRoleId(Long roleId) {
+		return ConstantFactory.me().getSingleRoleTip(roleId);
+	}
 
-    @Override
-    public SimpleAuthenticationInfo info(ShiroUser shiroUser, User user, String realmName) {
-        String credentials = user.getPassword();
+	@Override
+	public SimpleAuthenticationInfo info(ShiroUser shiroUser, User user, String realmName) {
+		String credentials = user.getPassword();
 
-        // 密码加盐处理
-        String source = user.getSalt();
-        ByteSource credentialsSalt = new Md5Hash(source);
-        return new SimpleAuthenticationInfo(shiroUser, credentials, credentialsSalt, realmName);
-    }
+		// 密码加盐处理
+		String source = user.getSalt();
+		ByteSource credentialsSalt = new Md5Hash(source);
+		return new SimpleAuthenticationInfo(shiroUser, credentials, credentialsSalt, realmName);
+	}
 
 }

@@ -32,14 +32,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/multi")
 public class TestMultiController extends BaseController {
 
-    @Autowired
-    private TestMultiDbService testMultiDbService;
+	@Autowired
+	private TestMultiDbService testMultiDbService;
 
-    @RequestMapping("")
-    public Object auth() {
-        testMultiDbService.beginTest();
-        return SuccessResponseData.success();
-    }
+	@RequestMapping("")
+	public Object auth() {
+		testMultiDbService.beginTest();
+		return SuccessResponseData.success();
+	}
 
 }
-

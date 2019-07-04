@@ -32,17 +32,17 @@ import java.io.Serializable;
 @Scope(scopeName = WebApplicationContext.SCOPE_SESSION)
 public class LogObjectHolder implements Serializable {
 
-    private Object object = null;
+	private Object object = null;
 
-    public void set(Object obj) {
-        this.object = obj;
-    }
+	public void set(Object obj) {
+		this.object = obj;
+	}
 
-    public Object get() {
-        return object;
-    }
+	public Object get() {
+		return object;
+	}
 
-    public static LogObjectHolder me() {
-        return SpringContextHolder.getBean(LogObjectHolder.class);
-    }
+	public static LogObjectHolder me() {
+		return SpringContextHolder.getBean(LogObjectHolder.class);
+	}
 }
